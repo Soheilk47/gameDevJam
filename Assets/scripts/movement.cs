@@ -19,20 +19,21 @@ public class movement : MonoBehaviour
 
     private void Update()
     {
-        moveInput = Input.GetAxis("Horizontal");
+        moveInput = Input.GetAxis("Horizontal");  //move
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-        if (faceRight == false && moveInput > 0 || faceRight == true && moveInput < 0)
+
+        if (faceRight == false && moveInput > 0 || faceRight == true && moveInput < 0) //flip
         {
             flip();
         }
 
-        if (Mathf.Abs(moveInput) > Mathf.Epsilon)
+        if (Mathf.Abs(moveInput) > Mathf.Epsilon)  //run animation
             anim.SetInteger("AnimState", 2);
         else
             anim.SetInteger("AnimState", 0);
     }
 
-    private void flip()
+    private void flip()  //flip func
     {
         faceRight = !faceRight;
         Vector3 scaler = transform.localScale;

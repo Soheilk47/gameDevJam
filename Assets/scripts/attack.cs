@@ -7,6 +7,11 @@ public class attack : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private int attackDamage;
+
+    [SerializeField] private float attackRate;
+    private float nextAttTime;
+
     private Animator anim;
 
     private void Start()
@@ -16,18 +21,22 @@ public class attack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Time.time >= nextAttTime)
         {
-            anim.SetTrigger("Attack");
-
-            Collider2D[] hitEnemy = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
-            foreach (Collider2D enemy in hitEnemy)
+            if (Input.GetMouseButtonDown(0))  // attack
             {
+                anim.SetTrigger("Attack");
+                Collider2D[] hitEnemy = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+                foreach (Collider2D enemy in hitEnemy)
+                {
+                    enemy.GetComponent<enemy>().TakeDamage(attackDamage);
+                }
+                nextAttTime = Time.time + attackRate;
             }
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmos()  //attack range gizmos
     {
         if (attackPoint == null)
         {
