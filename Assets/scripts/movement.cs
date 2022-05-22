@@ -19,7 +19,7 @@ public class movement : MonoBehaviour
 
     private void Update()
     {
-        moveInput = Input.GetAxis("Horizontal");  //move
+        moveInput = Input.GetAxisRaw("Horizontal");  //move
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
         if (faceRight == false && moveInput > 0 || faceRight == true && moveInput < 0) //flip
