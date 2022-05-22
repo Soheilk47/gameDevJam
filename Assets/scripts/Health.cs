@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy : MonoBehaviour
+public class Health : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
     private int curHealth;
@@ -29,5 +29,6 @@ public class enemy : MonoBehaviour
         anim.SetBool("isDead", true);
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
+        this.GetComponent<enemyAttack>().enabled = false;
     }
 }
