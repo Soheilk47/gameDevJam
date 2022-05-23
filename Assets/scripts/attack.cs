@@ -13,6 +13,7 @@ public class attack : MonoBehaviour
     private float nextAttTime;
 
     private Animator anim;
+    private movement move;
 
     private void Start()
     {
@@ -21,16 +22,11 @@ public class attack : MonoBehaviour
 
     private void Update()
     {
-        if (Time.time >= nextAttTime)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))  // attack
+            if (Time.time >= nextAttTime)
             {
                 anim.SetTrigger("Attack");
-                Collider2D[] hitEnemy = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
-                foreach (Collider2D enemy in hitEnemy)
-                {
-                    enemy.GetComponent<Health>().TakeDamage(attackDamage);
-                }
                 nextAttTime = Time.time + attackRate;
             }
         }
@@ -43,5 +39,14 @@ public class attack : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    private void Attack()
+    {
+        Collider2D hitEnemy = Physics2D.OverlapCircle(attackPoint.position, attackRange, enemyLayer);
+        if (hitEnemy != null)
+        {
+            hitEnemy.GetComponent<Health>().TakeDamage(attackDamage);
+        }
     }
 }

@@ -11,6 +11,8 @@ public class movement : MonoBehaviour
     private bool faceRight = true;
     private float moveInput;
 
+    private bool canMove = true;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -19,8 +21,11 @@ public class movement : MonoBehaviour
 
     private void Update()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");  //move
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        if (canMove)
+        {
+            moveInput = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        }
 
         if (faceRight == false && moveInput > 0 || faceRight == true && moveInput < 0) //flip
         {
@@ -39,5 +44,15 @@ public class movement : MonoBehaviour
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
+    }
+
+    public void dontMove()
+    {
+        canMove = false;
+    }
+
+    public void okMove()
+    {
+        canMove = true;
     }
 }
