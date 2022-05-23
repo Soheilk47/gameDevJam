@@ -13,16 +13,17 @@ public class attack : MonoBehaviour
     private float nextAttTime;
 
     private Animator anim;
-    private movement move;
+    private block block;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        block = GetComponent<block>();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && block.blockDown == false && block.blockUp == false)
         {
             if (Time.time >= nextAttTime)
             {
@@ -32,7 +33,7 @@ public class attack : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()  //attack range gizmos
+    private void OnDrawGizmos()
     {
         if (attackPoint == null)
         {

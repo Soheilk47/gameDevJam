@@ -24,11 +24,14 @@ public class enemyAttack : MonoBehaviour
 
     private float Yposition;
 
+    private block block;
+
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponent<Animator>();
         Yposition = transform.position.y;
+        block = Player.GetComponent<block>();
     }
 
     private void Update()
@@ -36,7 +39,10 @@ public class enemyAttack : MonoBehaviour
         if (attackMode)
         {
             playerPos = Player.transform.position;
-            transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, Yposition), new Vector2(playerPos.x, 0) + new Vector2(attackStand, 0), speed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, playerPos) > attackDistance)
+            {
+                transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, Yposition), new Vector2(playerPos.x, Yposition) + new Vector2(attackStand, 0), speed * Time.deltaTime);
+            }
             anim.SetInteger("AnimState", 2);
 
             if (Vector2.Distance(transform.position, playerPos) < attackDistance)
@@ -54,7 +60,7 @@ public class enemyAttack : MonoBehaviour
     private void AttackUp()
     {
         Collider2D hitPlayer = Physics2D.OverlapCircle(attackPointUp.position, attackRange, PlayerLayer);
-        if (hitPlayer != null)
+        if (hitPlayer != null && block.blockUp == false)
         {
             hitPlayer.GetComponent<Health>().TakeDamage(attackDamage);
         }
