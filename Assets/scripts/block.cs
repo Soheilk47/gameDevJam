@@ -16,6 +16,7 @@ public class block : MonoBehaviour
     {
         shieldUp.SetActive(false);
         shieldDown.SetActive(false);
+
         move = GetComponent<movement>();
     }
 

@@ -9,7 +9,6 @@ public class enemyAttack : MonoBehaviour
     private GameObject Player;
     private Vector2 playerPos;
     [System.NonSerialized] public bool attackMode = false;
-    private Animator anim;
 
     [SerializeField] private Transform attackPointUp;
     [SerializeField] private float attackDistance;
@@ -22,8 +21,11 @@ public class enemyAttack : MonoBehaviour
 
     [SerializeField] private GameObject detector;
 
+    [SerializeField] private AudioSource sword1;
+
     private float Yposition;
 
+    private Animator anim;
     private block block;
 
     private void Start()
@@ -63,6 +65,10 @@ public class enemyAttack : MonoBehaviour
         if (hitPlayer != null && block.blockUp == false)
         {
             hitPlayer.GetComponent<Health>().TakeDamage(attackDamage);
+        }
+        else if (hitPlayer != null && block.blockUp == true)
+        {
+            sword1.Play();
         }
     }
 
