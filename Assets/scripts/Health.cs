@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
-    [System.NonSerialized] public int curHealth;
+    private int curHealth;
     private Animator anim;
     private movement move;
 
@@ -37,9 +37,8 @@ public class Health : MonoBehaviour
 
         if (this.gameObject.name == "Player")
         {
-            GetComponent<movement>().enabled = false;
-            GetComponent<movement>().rb.velocity = new Vector2(0, 0); //to stop even while running
-            GetComponent<Rigidbody2D>().isKinematic = true; //to disable gravity
+            GetComponent<Rigidbody2D>().isKinematic = true;
+            GetComponent<movement>().dontMove();
             this.GetComponent<attack>().enabled = false;
         }
         else
