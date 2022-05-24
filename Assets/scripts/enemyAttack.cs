@@ -4,29 +4,30 @@ using UnityEngine;
 
 public class enemyAttack : MonoBehaviour
 {
+    [System.NonSerialized] public bool attackMode = false;
     [SerializeField] private LayerMask PlayerLayer;
     [SerializeField] private float speed;
     private GameObject Player;
-    private Vector2 playerPos;
-    [System.NonSerialized] public bool attackMode = false;
+    private Vector2 playerPos; private Vector2 offset;
+    private Vector2 thisPos;
 
     [SerializeField] private Transform attackPointUp;
     [SerializeField] private float attackDistance;
     [SerializeField] private float attackStand;
     [SerializeField] private float attackRange;
     [SerializeField] private int attackDamage;
-
     [SerializeField] private float attackRate;
     private float nextAttTime;
 
     [SerializeField] private GameObject detector;
 
-    [SerializeField] private AudioSource sword1;
-
     private float Yposition;
 
+    [SerializeField] private AudioSource sword1;
     private Animator anim;
     private block block;
+
+    private int blockPoint = 0;
 
     private void Start()
     {
@@ -40,14 +41,22 @@ public class enemyAttack : MonoBehaviour
     {
         if (attackMode)
         {
-            playerPos = Player.transform.position;
-            if (Vector2.Distance(transform.position, playerPos) > attackDistance)
+            playerPos = new Vector2(Player.transform.position.x, Yposition);
+            offset = new Vector2(attackStand, 0);
+            thisPos = new Vector2(transform.position.x, Yposition);
+
+            if (Vector2.Distance(transform.position, playerPos) > attackStand)
             {
-                transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, Yposition), new Vector2(playerPos.x, Yposition) + new Vector2(attackStand, 0), speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(thisPos, playerPos + offset, speed * Time.deltaTime);
             }
             anim.SetInteger("AnimState", 2);
 
-            if (Vector2.Distance(transform.position, playerPos) < attackDistance)
+            if (Player.GetComponent<Health>().curHealth <= 0)
+            {
+                anim.SetInteger("AnimState", 0);
+                nextAttTime *= 2;
+            }
+            else if (Vector2.Distance(transform.position, playerPos) < attackDistance)
             {
                 anim.SetInteger("AnimState", 0);
                 if (Time.time >= nextAttTime)
@@ -66,9 +75,11 @@ public class enemyAttack : MonoBehaviour
         {
             hitPlayer.GetComponent<Health>().TakeDamage(attackDamage);
         }
-        else if (hitPlayer != null && block.blockUp == true)
+        else if (hitPlayer != null && block.blockUp == true) //successful block
         {
             sword1.Play();
+            blockPoint++;
+            anim.SetInteger("BlockPoint", blockPoint);
         }
     }
 
@@ -79,5 +90,15 @@ public class enemyAttack : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(attackPointUp.position, attackRange);
+    }
+
+    private void resetPoints()
+    {
+        blockPoint = 0;
+    }
+
+    private void toggleThis()
+    {
+        this.enabled = !this.enabled;
     }
 }
