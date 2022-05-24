@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class block : MonoBehaviour
 {
-    [SerializeField] private GameObject shieldUp;
-    [SerializeField] private GameObject shieldDown;
+    //[SerializeField] private GameObject shieldUp;
+    //[SerializeField] private GameObject shieldDown;
 
     public bool blockUp = false;
     public bool blockDown = false;
@@ -14,8 +14,8 @@ public class block : MonoBehaviour
 
     private void Start()
     {
-        shieldUp.SetActive(false);
-        shieldDown.SetActive(false);
+        //shieldUp.SetActive(false);
+        //shieldDown.SetActive(false);
 
         move = GetComponent<movement>();
     }
@@ -29,13 +29,13 @@ public class block : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.Q))
         {
-            shieldUp.SetActive(true);
+            //shieldUp.SetActive(true);
             blockUp = true; blockDown = false;
             move.dontMove();
         }
         else if (Input.GetKey(KeyCode.E))
         {
-            shieldDown.SetActive(true);
+            //shieldDown.SetActive(true);
             blockDown = true; blockUp = false;
             move.dontMove();
         }
