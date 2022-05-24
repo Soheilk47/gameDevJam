@@ -1199,7 +1199,7 @@ Animator:
   m_GameObject: {fileID: 1192770223}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fa03b9c6285e44c49a4b8904c2107373, type: 2}
+  m_Controller: {fileID: 9100000, guid: 10e6de8b465215f4f8f2af2dd1e346fd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1250,12 +1250,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7ec52acb10ff0d942b66a0c01cd25153, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b93038d03a0ee3d49bd7e8270b89cdcf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1269,8 +1269,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192770223}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.91, y: -1.25, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: -5.574, y: -1.347, z: 0}
+  m_LocalScale: {x: 2.8, y: 2.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2901,8 +2901,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70b84276d3c1434993aad1eb50757e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldUp: {fileID: 703035932}
-  shieldDown: {fileID: 123268191}
   blockUp: 0
   blockDown: 0
 --- !u!114 &212652213474425862
