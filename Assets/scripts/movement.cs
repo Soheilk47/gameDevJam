@@ -6,7 +6,7 @@ public class movement : MonoBehaviour
 {
     [SerializeField] private float speed;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Animator anim;
     private bool faceRight = true;
     private float moveInput;
