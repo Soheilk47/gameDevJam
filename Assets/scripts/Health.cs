@@ -37,6 +37,7 @@ public class Health : MonoBehaviour
 
         if (this.gameObject.name == "Player")
         {
+            GetComponent<block>().enabled = false;
             GetComponent<movement>().enabled = false;
             GetComponent<movement>().rb.velocity = new Vector2(0, 0); //to stop even while running
             GetComponent<Rigidbody2D>().isKinematic = true; //to disable gravity

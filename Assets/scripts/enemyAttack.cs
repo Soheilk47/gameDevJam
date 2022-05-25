@@ -75,11 +75,19 @@ public class enemyAttack : MonoBehaviour
         {
             hitPlayer.GetComponent<Health>().TakeDamage(attackDamage);
         }
-        else if (hitPlayer != null && block.blockUp == true) //successful block
+        else if (hitPlayer != null && block.blockUp == true) //successful block up
         {
             sword1.Play();
             blockPoint++;
             anim.SetInteger("BlockPoint", blockPoint);
+            Player.GetComponent<Animator>().SetTrigger("impactUp");
+        }
+        else if (hitPlayer != null && block.blockUp == true) //successful block down
+        {
+            sword1.Play();
+            blockPoint++;
+            anim.SetInteger("BlockPoint", blockPoint);
+            Player.GetComponent<Animator>().SetTrigger("impactDown");
         }
     }
 

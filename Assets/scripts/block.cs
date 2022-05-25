@@ -10,13 +10,14 @@ public class block : MonoBehaviour
     public bool blockUp = false;
     public bool blockDown = false;
 
+    private Animator anim;
     private movement move;
 
     private void Start()
     {
         //shieldUp.SetActive(false);
         //shieldDown.SetActive(false);
-
+        anim = GetComponent<Animator>();
         move = GetComponent<movement>();
     }
 
@@ -24,18 +25,21 @@ public class block : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.E))
         {
+            anim.SetInteger("blockState", 0);
             blockUp = false; blockDown = false;
             move.okMove();
         }
-        else if (Input.GetKey(KeyCode.Q))
+        else if (Input.GetKeyDown(KeyCode.Q))
         {
             //shieldUp.SetActive(true);
+            anim.SetInteger("blockState", 1);
             blockUp = true; blockDown = false;
             move.dontMove();
         }
-        else if (Input.GetKey(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.E))
         {
             //shieldDown.SetActive(true);
+            anim.SetInteger("blockState", 2);
             blockDown = true; blockUp = false;
             move.dontMove();
         }
