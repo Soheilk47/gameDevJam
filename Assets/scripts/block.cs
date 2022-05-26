@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class block : MonoBehaviour
 {
-    //[SerializeField] private GameObject shieldUp;
-    //[SerializeField] private GameObject shieldDown;
-
     public bool blockUp = false;
     public bool blockDown = false;
 
@@ -15,8 +12,6 @@ public class block : MonoBehaviour
 
     private void Start()
     {
-        //shieldUp.SetActive(false);
-        //shieldDown.SetActive(false);
         anim = GetComponent<Animator>();
         move = GetComponent<movement>();
     }
@@ -31,14 +26,12 @@ public class block : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            //shieldUp.SetActive(true);
             anim.SetInteger("blockState", 1);
             blockUp = true; blockDown = false;
             move.dontMove();
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            //shieldDown.SetActive(true);
             anim.SetInteger("blockState", 2);
             blockDown = true; blockUp = false;
             move.dontMove();
