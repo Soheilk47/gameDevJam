@@ -20,19 +20,19 @@ public class block : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.E))
         {
-            anim.SetInteger("blockState", 0);
+            anim.Play("Idle");
             blockUp = false; blockDown = false;
             move.okMove();
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            anim.SetInteger("blockState", 1);
+            anim.Play("Block up");
             blockUp = true; blockDown = false;
             move.dontMove();
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            anim.SetInteger("blockState", 2);
+            anim.Play("Block down");
             blockDown = true; blockUp = false;
             move.dontMove();
         }
