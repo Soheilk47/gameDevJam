@@ -13,16 +13,14 @@ public class MusicTransition : MonoBehaviour
         {
             Destroy(musicObj[0]);
         }
-        else if (musicObj.Length == 2)
+        else if (musicObj.Length > 1)
         {
             DontDestroyOnLoad(musicObj[0]);
-            Destroy(musicObj[1]);
-        }
-        else if (musicObj.Length == 3)
-        {
-            DontDestroyOnLoad(musicObj[0]);
-            Destroy(musicObj[1]);
-            Destroy(musicObj[2]);
+
+            for (int i = 1; i < musicObj.Length; i++)
+            {
+                Destroy(musicObj[i]);
+            }
         }
     }
 }

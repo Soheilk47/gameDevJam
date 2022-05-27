@@ -1,32 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int maxHealth;
+    public int maxHealth;
     [System.NonSerialized] public int curHealth;
     private Animator anim;
     private movement move;
+    private detector detector;
 
-    private void Start()
+    public Slider healthbar;
+
+    private void Awake()
     {
         anim = GetComponent<Animator>();
         curHealth = maxHealth;
         move = GetComponent<movement>();
+        detector = GetComponentInChildren<detector>();
     }
 
     public void TakeDamage(int damage)
     {
-        if (this.gameObject.name == "Player")
-        {
-            move.okMove();
-        }
         curHealth -= damage;
         anim.SetTrigger("Hurt");
         if (curHealth <= 0)
         {
             Die();
+        }
+
+        if (this.gameObject.tag == "Enemy")
+        {
+            if (detector != null)
+            {
+                healthbar.value = detector.enemyhealth.curHealth;
+            }
+            else
+            {
+                //healthbar.enabled = false;
+            }
+        }
+
+        if (this.gameObject.name == "Player")
+        {
+            move.okMove();
         }
     }
 
