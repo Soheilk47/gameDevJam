@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class block : MonoBehaviour
 {
-    public bool blockUp = false;
-    public bool blockDown = false;
+    [System.NonSerialized] public bool blockUp = false;
+    [System.NonSerialized] public bool blockDown = false;
 
     private Animator anim;
     private movement move;

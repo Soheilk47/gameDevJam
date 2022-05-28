@@ -9,8 +9,6 @@ public class parallax : MonoBehaviour
 
     private float[] StartPos;
 
-    //private int i;
-
     private void Start()
     {
         StartPos = new float[backGrounds.Length];

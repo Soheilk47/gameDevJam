@@ -23,7 +23,8 @@ public class enemyAttack : MonoBehaviour
 
     private float Yposition;
 
-    [SerializeField] private AudioSource sword1;
+    [SerializeField] private AudioSource swordBlock;
+    [SerializeField] private AudioSource hurt;
     private Animator anim;
     private block block;
 
@@ -74,17 +75,18 @@ public class enemyAttack : MonoBehaviour
         if (hitPlayer != null && block.blockUp == false)
         {
             hitPlayer.GetComponent<Health>().TakeDamage(attackDamage);
+            hurt.Play();
         }
         else if (hitPlayer != null && block.blockUp == true) //successful block up
         {
-            sword1.Play();
+            swordBlock.Play();
             blockPoint++;
             anim.SetInteger("BlockPoint", blockPoint);
             Player.GetComponent<Animator>().SetTrigger("impactUp");
         }
         else if (hitPlayer != null && block.blockUp == true) //successful block down
         {
-            sword1.Play();
+            swordBlock.Play();
             blockPoint++;
             anim.SetInteger("BlockPoint", blockPoint);
             Player.GetComponent<Animator>().SetTrigger("impactDown");
