@@ -16,9 +16,9 @@ public class Health : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        curHealth = maxHealth;
         move = GetComponent<movement>();
         detector = GetComponentInChildren<detector>();
+        curHealth = maxHealth;
     }
 
     public void TakeDamage(int damage)
@@ -36,15 +36,12 @@ public class Health : MonoBehaviour
             {
                 healthbar.value = detector.enemyhealth.curHealth;
             }
-            else
-            {
-                //healthbar.enabled = false;
-            }
         }
 
         if (this.gameObject.name == "Player")
         {
             move.okMove();
+            healthbar.value = curHealth;
         }
     }
 
