@@ -56,7 +56,8 @@ public class attack : MonoBehaviour
         if (hitEnemy != null)
         {
             hitEnemy.GetComponent<Health>().TakeDamage(attackDamage);
-            Instantiate(blood, bloodLocation);
+            GameObject bloood = Instantiate(blood, bloodLocation);
+            bloood.transform.parent = null;
             hitSound.Play();
         }
     }

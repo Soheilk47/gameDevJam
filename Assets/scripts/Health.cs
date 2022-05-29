@@ -47,7 +47,7 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        anim.SetBool("isDead", true);
+        anim.SetBool("IsDead", true);
         GetComponent<Collider2D>().enabled = false;
 
         if (this.gameObject.name == "Player")
