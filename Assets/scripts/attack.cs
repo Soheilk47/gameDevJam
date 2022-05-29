@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class attack : MonoBehaviour
 {
+    [SerializeField] private AudioSource hitSound;
+    [SerializeField] private AudioSource airCut;
+
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int attackDamage;
 
     [SerializeField] private float attackRate;
+
+    [SerializeField] private GameObject blood;
+    [SerializeField] private Transform bloodLocation;
+
     private float nextAttTime;
 
     private Animator anim;
@@ -28,6 +35,7 @@ public class attack : MonoBehaviour
             if (Time.time >= nextAttTime)
             {
                 anim.SetTrigger("Attack");
+                airCut.Play();
                 nextAttTime = Time.time + attackRate;
             }
         }
@@ -48,6 +56,8 @@ public class attack : MonoBehaviour
         if (hitEnemy != null)
         {
             hitEnemy.GetComponent<Health>().TakeDamage(attackDamage);
+            Instantiate(blood, bloodLocation);
+            hitSound.Play();
         }
     }
 }
