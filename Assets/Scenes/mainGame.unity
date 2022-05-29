@@ -236,8 +236,8 @@ GameObject:
   m_Component:
   - component: {fileID: 49862723}
   - component: {fileID: 49862722}
-  - component: {fileID: 49862721}
   - component: {fileID: 49862720}
+  - component: {fileID: 49862721}
   - component: {fileID: 49862724}
   - component: {fileID: 49862725}
   - component: {fileID: 49862726}
@@ -369,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   healthbar: {fileID: 1893243337}
+  deathSprite: {fileID: 0}
 --- !u!114 &49862725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,6 +631,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 370281012}
     m_Modifications:
+    - target: {fileID: 8731064917795236288, guid: b18dcd3ee86986b469e9cfc64055704c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.18
+      objectReference: {fileID: 0}
     - target: {fileID: 8880890979157700241, guid: b18dcd3ee86986b469e9cfc64055704c, type: 3}
       propertyPath: m_Name
       value: PF Village Props - Stall
@@ -690,7 +695,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4354427169953323695, guid: b18dcd3ee86986b469e9cfc64055704c, type: 3}
+    - {fileID: 1790980893991760848, guid: b18dcd3ee86986b469e9cfc64055704c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b18dcd3ee86986b469e9cfc64055704c, type: 3}
 --- !u!1 &298076926
 GameObject:
@@ -1783,6 +1790,7 @@ GameObject:
   - component: {fileID: 757755900}
   - component: {fileID: 757755899}
   - component: {fileID: 757755898}
+  - component: {fileID: 757755902}
   m_Layer: 3
   m_Name: Birdie
   m_TagString: Enemy
@@ -1885,8 +1893,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757755893}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.86, y: -1.13, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.86, y: -0.98, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2126,6 +2134,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   healthbar: {fileID: 1893243337}
+  deathSprite: {fileID: 2669341763007840765, guid: 9f4f19b1ba4e941448d9dfca5db9fcb8, type: 3}
+--- !u!50 &757755902
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757755893}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &893104110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4140,7 +4170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2106114110}
   m_LocalRotation: {x: -0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.428, y: -0.071, z: 0}
+  m_LocalPosition: {x: 0.12, y: -0.02, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4534,6 +4564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthbar: {fileID: 2011589249}
+  deathSprite: {fileID: 0}
 --- !u!82 &212652213474425863
 AudioSource:
   m_ObjectHideFlags: 0

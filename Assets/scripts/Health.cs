@@ -13,6 +13,8 @@ public class Health : MonoBehaviour
 
     public Slider healthbar;
 
+    [SerializeField] private GameObject deathSprite;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -61,6 +63,12 @@ public class Health : MonoBehaviour
         else
         {
             this.GetComponent<enemyAttack>().enabled = false;
+            if (deathSprite != null)
+            {
+                GameObject death = Instantiate(deathSprite, gameObject.transform);
+                death.transform.parent = null;
+                Destroy(gameObject);
+            }
         }
         this.enabled = false;
     }
