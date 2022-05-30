@@ -15,6 +15,8 @@ public class Health : MonoBehaviour
 
     [SerializeField] private GameObject deathSprite;
 
+    [SerializeField] private GameObject sceneMngr;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -59,6 +61,7 @@ public class Health : MonoBehaviour
             GetComponent<movement>().rb.velocity = new Vector2(0, 0); //to stop even while running
             GetComponent<Rigidbody2D>().isKinematic = true; //to disable gravity
             this.GetComponent<attack>().enabled = false;
+            Invoke("loadDieScene", 3f);
         }
         else
         {
@@ -71,5 +74,10 @@ public class Health : MonoBehaviour
             }
         }
         this.enabled = false;
+    }
+
+    private void loadDieScene()
+    {
+        sceneMngr.GetComponent<SceneMngr>().MenuScene();
     }
 }

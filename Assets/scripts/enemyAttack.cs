@@ -106,9 +106,4 @@ public class enemyAttack : MonoBehaviour
     {
         blockPoint = 0;
     }
-
-    private void toggleThis()
-    {
-        this.enabled = !this.enabled;
-    }
 }

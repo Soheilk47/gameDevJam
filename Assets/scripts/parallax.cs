@@ -5,7 +5,7 @@ using UnityEngine;
 public class parallax : MonoBehaviour
 {
     public Transform[] backGrounds;
-    [Range(0, 2)] [SerializeField] private float[] speeds;
+    [Range(0, 1)] [SerializeField] private float[] speeds;
 
     private float[] StartPos;
 
