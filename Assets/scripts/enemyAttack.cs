@@ -12,6 +12,7 @@ public class enemyAttack : MonoBehaviour
     private Vector2 thisPos;
 
     [SerializeField] private Transform attackPointUp;
+    [SerializeField] private Transform attackPointDown;
     [SerializeField] private float attackDistance;
     [SerializeField] private float attackStand;
     [SerializeField] private float attackRange;
@@ -52,7 +53,7 @@ public class enemyAttack : MonoBehaviour
             }
             anim.SetInteger("AnimState", 2);
 
-            if (Player.GetComponent<Health>().curHealth <= 0)
+            if (Player.GetComponent<Health>().curHealth <= 0)  //player dies
             {
                 anim.SetInteger("AnimState", 0);
                 nextAttTime *= 2;
@@ -63,6 +64,7 @@ public class enemyAttack : MonoBehaviour
                 if (Time.time >= nextAttTime)
                 {
                     anim.SetTrigger("AttackUp");
+                    anim.SetTrigger("AttackDown");
                     nextAttTime = Time.time + attackRate;
                 }
             }
@@ -84,7 +86,17 @@ public class enemyAttack : MonoBehaviour
             anim.SetInteger("BlockPoint", blockPoint);
             Player.GetComponent<Animator>().SetTrigger("impactUp");
         }
-        else if (hitPlayer != null && block.blockUp == true) //successful block down
+    }
+
+    private void AttackDown()
+    {
+        Collider2D hitPlayer = Physics2D.OverlapCircle(attackPointDown.position, attackRange, PlayerLayer);
+        if (hitPlayer != null && block.blockDown == false)
+        {
+            hitPlayer.GetComponent<Health>().TakeDamage(attackDamage);
+            hurt.Play();
+        }
+        else if (hitPlayer != null && block.blockDown == true) //successful block down
         {
             swordBlock.Play();
             blockPoint++;
@@ -95,11 +107,14 @@ public class enemyAttack : MonoBehaviour
 
     private void OnDrawGizmos()  //attack range gizmos
     {
-        if (attackPointUp == null)
+        if (attackPointUp != null)
         {
-            return;
+            Gizmos.DrawWireSphere(attackPointUp.position, attackRange);
         }
-        Gizmos.DrawWireSphere(attackPointUp.position, attackRange);
+        if (attackPointDown != null)
+        {
+            Gizmos.DrawWireSphere(attackPointDown.position, attackRange);
+        }
     }
 
     private void resetPoints()
