@@ -488,7 +488,7 @@ MonoBehaviour:
   attackStand: 0.8
   attackRange: 0.47
   attackDamage: 30
-  attackRate: 0.9
+  attackRate: 0.7
   detector: {fileID: 1240264639}
   swordBlock: {fileID: 49862726}
   hurt: {fileID: 49862727}
